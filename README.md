@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 # slintel-image-upload
-slintel image uplaod
-=======
+
 ## Installation
 
 ```bash
@@ -24,4 +23,4 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
->>>>>>> master
+

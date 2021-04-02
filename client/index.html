@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Upload Images to Server</title>
+    <title>Slintel Assignment Upload Images to Server</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +15,14 @@
         body {
             background: darkturquoise;
         }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+        }
+        select {
+            width: fit-content;
+        }
     </style>
 </head>
 <body>
@@ -24,14 +32,34 @@
         <h1 class="card-header">Upload Image</h1>
         <div class="card-body">
             <div class="form-group">
-                <form action="/" method="post" enctype="multipart/form-data">
-                    <input class="form-control-file" type="file" accept="image/*" name="image" >
-                    <input class="btn mt-3" type="submit" value="upload">
+                <form method="post" enctype="multipart/form-data" id="fileinfo">
+                    <input class="form-control-file" type="file" accept="image/*" name="upload" >
+                    <label for="resolution">Choose a resolution:</label>
+                    <select id="resolution" name="resolution">
+                        <option value="sm">10*10</option>
+                        <option value="md">20*20</option>
+                        <option value="lr">50*50</option>
+                    </select>
+                    <input class="btn mt-3" type="submit" value="Generate Thumbnail">
                 </form>
             </div>
+            <div class="result"></div>
         </div>
     </div>
 </div>
+<script>
+    fileinfo.onsubmit = async (e) => {
+    e.preventDefault();
 
+    let response = await fetch('/fileupload', {
+      method: 'POST',
+      body: new FormData(fileinfo)
+    });
+
+    let result = await response.json();
+
+    document.querySelector('.result').innerHTML = JSON.stringify(result);
+  };
+</script>
 </body>
 </html>

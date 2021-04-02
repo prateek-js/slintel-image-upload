@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ImageUploadModule } from './image-upload/image_upload.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 @Module({
-  imports: [MulterModule.register({
+  imports: [ImageUploadModule,
+    MulterModule.register({
     dest: './files',
   }),
   ServeStaticModule.forRoot({
@@ -14,5 +17,6 @@ import { join } from 'path';
   })
   ],
   controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
