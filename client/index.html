@@ -33,7 +33,8 @@
         <div class="card-body">
             <div class="form-group">
                 <form method="post" enctype="multipart/form-data" id="fileinfo">
-                    <input class="form-control-file" type="file" accept="image/*" name="upload" >
+                    <!-- <input class="form-control-file" type="file" accept="image/*" name="upload" > -->
+                    <input class="form-control-file" type="file" accept="image/*" name="image" >
                     <label for="resolution">Choose a resolution:</label>
                     <select id="resolution" name="resolution">
                         <option value="sm">10*10</option>
@@ -51,10 +52,18 @@
     fileinfo.onsubmit = async (e) => {
     e.preventDefault();
 
-    let response = await fetch('/fileupload', {
+    // for local
+    let response = await fetch('/', {
       method: 'POST',
       body: new FormData(fileinfo)
     });
+
+    // for aws
+    // let response = await fetch('/upload', {
+    //   method: 'POST',
+    //   body: new FormData(fileinfo)
+    // });
+
 
     let result = await response.json();
 

@@ -6,8 +6,8 @@ import * as multerS3 from 'multer-s3';
 const AWS_S3_BUCKET_NAME = 'slinter-image';
 const s3 = new AWS.S3();
 AWS.config.update({
-  accessKeyId: 'AKIAYTYKKCLW3HJE5QH4',
-  secretAccessKey: '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',
+  accessKeyId: 'AKIAYTYKKCLW72J5BO37',
+  secretAccessKey: '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',
 });
 
 @Injectable()
